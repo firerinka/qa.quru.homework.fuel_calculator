@@ -1,9 +1,7 @@
 package guru.qa;
 
-import guru.qa.domain.Car;
-import guru.qa.domain.Track;
-import guru.qa.service.ConsoleInterface;
-import guru.qa.service.GuiInterface;
+import guru.qa.entity.CarEntity;
+import guru.qa.entity.TrackEntity;
 import guru.qa.service.UserInterface;
 
 public class Application {
@@ -15,8 +13,8 @@ public class Application {
     }
 
     void run() {
-        Car car = userInterface.chooseCar();
-        Track track = userInterface.chooseTrack();
+        CarEntity car = userInterface.chooseCar();
+        TrackEntity track = userInterface.chooseTrack();
         userInterface.showResult(car, track);
     }
 }

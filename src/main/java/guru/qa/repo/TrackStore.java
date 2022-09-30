@@ -1,28 +1,24 @@
 package guru.qa.repo;
 
-import guru.qa.domain.Nurburgring;
-import guru.qa.domain.Spa;
-import guru.qa.domain.Track;
-
-import java.util.Map;
+import guru.qa.db.TrackRepository;
+import guru.qa.db.impl.PostgresTrackRepository;
+import guru.qa.entity.TrackEntity;
 
 public class TrackStore {
 
-    private Map<String, Track> store = Map.of(
-        "Nurburgring", new Nurburgring(),
-        "Spa", new Spa()
-    );
+    private TrackRepository trackRepository = new PostgresTrackRepository();
 
-    public Track lookup(String trackName) {
-        for (String key : store.keySet()) {
-            if (key.equalsIgnoreCase(trackName)) {
-                return store.get(key);
-            }
+    public TrackEntity lookup(String trackName) {
+        TrackEntity track = trackRepository.getByName(trackName);
+
+        if (track != null) {
+            return track;
         }
+
         throw new IllegalArgumentException("Track not found for given name: " + trackName);
     }
 
     public Object[] trackNames() {
-        return store.keySet().toArray();
+        return trackRepository.getAllNames();
     }
 }

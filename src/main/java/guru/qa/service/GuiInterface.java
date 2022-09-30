@@ -1,7 +1,7 @@
 package guru.qa.service;
 
-import guru.qa.domain.Car;
-import guru.qa.domain.Track;
+import guru.qa.entity.CarEntity;
+import guru.qa.entity.TrackEntity;
 import guru.qa.repo.CarStore;
 import guru.qa.repo.TrackStore;
 
@@ -14,7 +14,7 @@ public class GuiInterface extends UserInterface {
     }
 
     @Override
-    public Car chooseCar() {
+    public CarEntity chooseCar() {
         Object[] selectionValues = carStore.carModelNames();
         String desiredCar =
                 (String) JOptionPane.showInputDialog(null,
@@ -29,7 +29,7 @@ public class GuiInterface extends UserInterface {
     }
 
     @Override
-    public Track chooseTrack() {
+    public TrackEntity chooseTrack() {
         Object[] selectionValues = trackStore.trackNames();
         String desiredTrack =
                 (String) JOptionPane.showInputDialog(null,
@@ -43,7 +43,7 @@ public class GuiInterface extends UserInterface {
         return trackStore.lookup(desiredTrack);
     }
 
-    public void showResult(Car car, Track track) {
+    public void showResult(CarEntity car, TrackEntity track) {
         if (car.isPitstopNeeded(track)) {
             JOptionPane.showMessageDialog(
                     null,

@@ -1,28 +1,24 @@
 package guru.qa.repo;
 
-import guru.qa.domain.Car;
-import guru.qa.domain.Ferrari;
-import guru.qa.domain.Mercedes;
-
-import java.util.Map;
+import guru.qa.db.CarRepository;
+import guru.qa.db.impl.PostgresCarRepository;
+import guru.qa.entity.CarEntity;
 
 public class CarStore {
 
-    private Map<String, Car> store = Map.of(
-        "Ferrari", new Ferrari(),
-        "Mercedes", new Mercedes()
-    );
+    private CarRepository carRepository = new PostgresCarRepository();
 
-    public Car lookup(String carName) {
-        for (String key : store.keySet()) {
-            if (key.equalsIgnoreCase(carName)) {
-                return store.get(key);
-            }
+    public CarEntity lookup(String carName) {
+        CarEntity car = carRepository.getByName(carName);
+
+        if (car != null) {
+            return car;
         }
+
         throw new IllegalArgumentException("Car not found for given name: " + carName);
     }
 
     public Object[] carModelNames() {
-        return store.keySet().toArray();
+        return carRepository.getAllNames();
     }
 }

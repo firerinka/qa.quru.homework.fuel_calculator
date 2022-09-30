@@ -1,7 +1,7 @@
 package guru.qa.service;
 
-import guru.qa.domain.Car;
-import guru.qa.domain.Track;
+import guru.qa.entity.CarEntity;
+import guru.qa.entity.TrackEntity;
 import guru.qa.repo.CarStore;
 import guru.qa.repo.TrackStore;
 
@@ -14,9 +14,9 @@ public abstract class UserInterface {
         this.trackStore = trackStore;
     }
 
-    public abstract Car chooseCar();
+    public abstract CarEntity chooseCar();
 
-    public abstract Track chooseTrack();
+    public abstract TrackEntity chooseTrack();
 
-    public abstract void showResult(Car car, Track track);
+    public abstract void showResult(CarEntity car, TrackEntity track);
 }

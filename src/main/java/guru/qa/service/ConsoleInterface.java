@@ -1,7 +1,7 @@
 package guru.qa.service;
 
-import guru.qa.domain.Car;
-import guru.qa.domain.Track;
+import guru.qa.entity.CarEntity;
+import guru.qa.entity.TrackEntity;
 import guru.qa.repo.CarStore;
 import guru.qa.repo.TrackStore;
 
@@ -17,21 +17,21 @@ public class ConsoleInterface extends UserInterface {
     }
 
     @Override
-    public Car chooseCar() {
+    public CarEntity chooseCar() {
         System.out.println("Car:");
         String desiredCar = scanner.next();
         return carStore.lookup(desiredCar);
     }
 
     @Override
-    public Track chooseTrack() {
+    public TrackEntity chooseTrack() {
         System.out.println("Track:");
         String desiredTrack = scanner.next();
         return trackStore.lookup(desiredTrack);
     }
 
     @Override
-    public void showResult(Car car, Track track) {
+    public void showResult(CarEntity car, TrackEntity track) {
         System.out.println("Результат:");
         if (car.isPitstopNeeded(track)) {
             System.out.println("Pit-stop needed in " + car.maxLapsForTrack());
