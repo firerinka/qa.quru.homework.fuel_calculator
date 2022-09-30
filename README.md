@@ -9,7 +9,7 @@ docker run --name some-postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGR
 ```
 
 ### Running application
-To run application run PostgreSQL docker image first. Run application afterwards.
+Before running application run PostgreSQL docker image first. Run application afterwards.
 
 By defaule GUI interface is running.
 For console interface use CLI argument:
